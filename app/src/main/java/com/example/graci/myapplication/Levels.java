@@ -18,8 +18,6 @@ public class Levels extends AppCompatActivity {
 
         CustomView customView = new CustomView(this);
 
-
-
     }
 
     public void enterAnswer(){
