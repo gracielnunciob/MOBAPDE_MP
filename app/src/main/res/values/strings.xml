@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <color name="black">#000000</color>
+
+    <string name="title">Bandit: Origins</string>
+    <string name="swipe">Swipe to Start!</string>
+
+    <string name="story">
+        YOU! I want to give u a task. A task to fight our school principal!
+        Why you ask? I want him to know how much we are in a pain right now as students.
+        It's so tiring. So much exams, so much homework. I need your help to fight him
+        And complain about how we are as students. Now go and fight!
+    </string>
+    <string name="continueBtn">Tap to Continue</string>
+
+    <string name="monsters">What do you do?</string>
+    <string name="fight">Fight!</string>
+    <string name="items">Items!</string>
+
+    <string name="gameover">Game Over</string>
+    <string name="win">You Win!</string>
+    <string name="lose">You Lose!</string>
+    <string name="again">Play Again?</string>
+
+    <string name="student_talk">
+        Hold up, Let me take you on as a refresher!
+    </string>
+
+</resources>

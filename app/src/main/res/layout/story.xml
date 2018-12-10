@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chalkboard">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="338dp"
+        android:layout_height="465dp"
+        android:layout_marginBottom="475dp"
+        android:layout_marginEnd="285dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginRight="285dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="73dp"
+        android:text="@string/story"
+        android:textColor="?attr/colorBackgroundFloating"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112" />
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="334dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="31dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/startbtn_background"
+        android:text="@string/continueBtn"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+</android.support.constraint.ConstraintLayout>
