@@ -41,7 +41,7 @@
             android:text="@string/monsters"
             android:textColor="@android:color/background_light"
             android:textSize="36sp"
-            app:fontFamily="@font/Chalkduster" />
+            app:fontFamily="@font/atomic_age" />
 
         <Button
             android:id="@+id/button3"

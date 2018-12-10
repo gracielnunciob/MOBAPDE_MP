@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/answer_text"
+            android:text="hello"
             android:textSize="22sp" />
 
         <EditText
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            tools:text="@string/answer_title" />
+            tools:text="hi" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
