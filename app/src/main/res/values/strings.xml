@@ -14,7 +14,12 @@
     </string>
     <string name="continueBtn">Tap to Continue</string>
 
-    <string name="monsters">What do you do?</string>
+    <string name="whatdo">
+        What do you do?
+        Swipe up to fight!
+        Swipe Right to defend!
+        Double Tap to Heal!
+    </string>
     <string name="fight">Fight!</string>
     <string name="items">Items!</string>
 
@@ -27,9 +32,27 @@
     <string name = "enemy_2"> Student Council President </string>
     <string name = "enemy_3"> Janitor </string>
     <string name = "enemy_4"> Teacher </string>
+    <string name = "enemy_5"> Principal </string>
+
 
     <string name= "enemyPhrase_1">
         Hold up, Let me take you on as a refresher!
+    </string>
+
+    <string name= "enemyPhrase_2">
+        Wait a minute here! Stop right there! You can't go there
+    </string>
+
+    <string name= "enemyPhrase_3">
+        Let me clean you up!
+    </string>
+
+    <string name= "enemyPhrase_4">
+        Such a bad student, you shall return to class immedietly
+    </string>
+
+    <string name= "enemyPhrase_5">
+        I see you want to complain to me, well too bad, THIS IS MY SCHOOL BY MY RULES!
     </string>
 
 </resources>
