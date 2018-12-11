@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="338dp"
+        android:layout_width="362dp"
         android:layout_height="465dp"
         android:layout_marginBottom="475dp"
         android:layout_marginEnd="285dp"
@@ -30,7 +30,7 @@
     <Button
         android:id="@+id/nextBtn"
         android:layout_width="334dp"
-        android:layout_height="wrap_content"
+        android:layout_height="57dp"
         android:layout_marginBottom="31dp"
         android:layout_marginEnd="27dp"
         android:layout_marginLeft="23dp"

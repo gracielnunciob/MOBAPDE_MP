@@ -46,16 +46,13 @@ public class MainActivity extends AppCompatActivity {
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 
             if (e2.getX() < e1.getX()){
-
                 // swipe left
-
                 Intent intent = new Intent(getApplicationContext(), Story.class);
                 startActivity(intent);
             }
 
             else if (e2.getX() > e1.getX()){
                 //swipe right
-
                 Intent intent = new Intent(getApplicationContext(), Story.class);
                 startActivity(intent);
             }

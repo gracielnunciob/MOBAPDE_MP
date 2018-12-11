@@ -23,7 +23,12 @@
     <string name="lose">You Lose!</string>
     <string name="again">Play Again?</string>
 
-    <string name="student_talk">
+    <string name = "enemy_1"> Student</string>
+    <string name = "enemy_2"> Student Council President </string>
+    <string name = "enemy_3"> Janitor </string>
+    <string name = "enemy_4"> Teacher </string>
+
+    <string name= "enemyPhrase_1">
         Hold up, Let me take you on as a refresher!
     </string>
 
