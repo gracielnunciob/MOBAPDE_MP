@@ -224,7 +224,7 @@ public class Levels extends AppCompatActivity implements
     public boolean onDoubleTapEvent(MotionEvent e) {
         if (part == 2){
             actionReg = 3;
-            chatTV.setText("Action Registered");
+            chatTV.setText("HEAL!");
             part = 3;
             return true;
         }
@@ -264,7 +264,7 @@ public class Levels extends AppCompatActivity implements
         if (e2.getY() > e1.getY()){
             if (part == 2){
                 actionReg = 1;
-                chatTV.setText("Action Registered");
+                chatTV.setText("ATTACK!");
                 part = 3;
             }
             // swipe up
@@ -277,7 +277,7 @@ public class Levels extends AppCompatActivity implements
 
             if (part == 2){
                 actionReg = 2;
-                chatTV.setText("Action Registered");
+                chatTV.setText("DEFEND!");
                 part = 3;
             }
             return true;
