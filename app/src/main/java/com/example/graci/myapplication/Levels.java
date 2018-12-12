@@ -53,16 +53,9 @@ public class Levels extends AppCompatActivity implements
                 R.drawable.teacher, R.drawable.principal};
         gestureDetector.setOnDoubleTapListener(this);
         count = 0;
+        matchCount = 0;
 
-
-        if (matchCount != null) {
-            matchCount = getIntent().getIntExtra("NEXT", matchCount + 1);
-            Log.e("DEBUGING", String.valueOf(matchCount));
-        }
-
-        else if (matchCount == null){
-            matchCount = 0;
-        }
+        matchCount = getIntent().getIntExtra("NEXT", 0);
 
         //initializing player
         player = new Player_model("You", 100, 100, 10, 10);
@@ -112,11 +105,18 @@ public class Levels extends AppCompatActivity implements
                         if (part == 1) {
                             chatTV.setText(finalEnemyAppear);
                             part = 2;
-                            if(count==3){
+
+                            if(count == 3 && matchCount == 4){
+                                Intent intent = new Intent(getApplicationContext(), GameOver.class);
+                                intent.putExtra("STATUS", "win");
+                                startActivity(intent);
+                            }
+                            else if(count==3){
                                Intent intent = new Intent(getApplicationContext(), Levels.class);
                                intent.putExtra("NEXT", matchCount+1);
                                 startActivity(intent);
                             }
+
 
 
                         } else if (part == 2)
