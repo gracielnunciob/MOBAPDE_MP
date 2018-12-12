@@ -1,6 +1,7 @@
 package com.example.graci.myapplication;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -14,6 +15,7 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 public class MainActivity extends AppCompatActivity {
     
     private Button startBtn;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        playMusic();
+    }
 
-        
+    public void playMusic(){
+        mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.sneak);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
     }
 
 }
