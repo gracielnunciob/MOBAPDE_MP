@@ -33,8 +33,8 @@ public class Levels extends AppCompatActivity implements
     private int imageSet[];
     int actionReg = 0;
     private GestureDetectorCompat gestureDetector;
-    private Player_model player;
-    private Player_model enemy;
+    Player_model player;
+    Player_model enemy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +53,11 @@ public class Levels extends AppCompatActivity implements
 
 
         //initializing player
-        player = new Player_model("Bart", 100, 100, 10, 10);
+        player = new Player_model("You", 100, 100, 10, 10);
 
 
         //loops till you fight 5 enemies or lose 1 fight
         for (int matchCount = 0; matchCount < 5; matchCount++) {
-
-            part = 1;
-            String enemyAppear;
-            String enemyStatus;
-            String whatdo;
-            final String phrase;
 
             //new enemy
             enemy = new Player_model("Enemy" + (matchCount + 1), baseHp, baseHp, baseStrength, baseDefense);
@@ -74,15 +68,21 @@ public class Levels extends AppCompatActivity implements
             //make new battle (includes counters and such)
             final Battle functions = new Battle(player, enemy);
 
-            //picture of enemy
-            enemyIV.setImageResource(imageSet[matchCount]);
-
-
-            //phrase of the ENEMY
-            phrase = getResourceFromString(this, "enemyPhrase_" + 1);
-            chatTV.setText(phrase);
-
             while (player.getCurrHp() > 0 && enemy.getCurrHp() > 0) {
+
+                part = 1;
+                String enemyAppear;
+                String enemyStatus;
+                String whatdo;
+                String phrase;
+
+                //picture of enemy
+                enemyIV.setImageResource(imageSet[matchCount]);
+
+                //phrase of the ENEMY
+                phrase = getResourceFromString(this, "enemyPhrase_" + (matchCount + 1));
+                chatTV.setText(phrase);
+
 
                 //enemy Strings
                 enemyStatus = "Enemy HP: " + enemy.getHp() + "\nEnemy Strength: " + enemy.getStrength() + "\nEnemy Defense: " + enemy.getDefense();
@@ -188,7 +188,11 @@ public class Levels extends AppCompatActivity implements
 
                 //player scaling feature
                 functions.postBattle();
+
+
             }
+
+
 
         }
     }
