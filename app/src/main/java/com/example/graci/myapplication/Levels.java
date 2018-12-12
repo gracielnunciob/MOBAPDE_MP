@@ -33,10 +33,8 @@ public class Levels extends AppCompatActivity implements
     private int imageSet[];
     int actionReg = 0;
     private GestureDetectorCompat gestureDetector;
-
-    public Levels(){
-
-    }
+    private Player_model player;
+    private Player_model enemy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +43,18 @@ public class Levels extends AppCompatActivity implements
 
         //connecting with the UI and initializing
         CustomView customView = new CustomView(this);
-        String heroStatus;
+        gestureDetector = new GestureDetectorCompat(this,this);
         enemyIV = findViewById(R.id.enemyIV);
         chatTV = findViewById(R.id.chatTV);
         nextBtn = findViewById(R.id.nextBtn);
         imageSet = new int[]{R.drawable.student, R.drawable.scpres, R.drawable.janitor,
                 R.drawable.teacher, R.drawable.principal};
-        gestureDetector = new GestureDetectorCompat(this,this);
         gestureDetector.setOnDoubleTapListener(this);
 
 
         //initializing player
-        final Player_model player = new Player_model("Bart", 100, 100, 10, 10);
-      //  player.setCurrHp(50);
+        player = new Player_model("Bart", 100, 100, 10, 10);
+
 
         //loops till you fight 5 enemies or lose 1 fight
         for (int matchCount = 0; matchCount < 5; matchCount++) {
@@ -69,7 +66,7 @@ public class Levels extends AppCompatActivity implements
             final String phrase;
 
             //new enemy
-            final Player_model enemy = new Player_model("Enemy" + (matchCount + 1), baseHp, baseHp, baseStrength, baseDefense);
+            enemy = new Player_model("Enemy" + (matchCount + 1), baseHp, baseHp, baseStrength, baseDefense);
 
             //Think(enemy,Difficulty)
             final Think brain = new Think(enemy, matchCount + 1);
@@ -81,8 +78,8 @@ public class Levels extends AppCompatActivity implements
             enemyIV.setImageResource(imageSet[matchCount]);
 
 
-            //phrase of the character
-            phrase = getResourceFromString(this, "enemyPhrase_" + (matchCount + 1));
+            //phrase of the ENEMY
+            phrase = getResourceFromString(this, "enemyPhrase_" + 1);
             chatTV.setText(phrase);
 
             while (player.getCurrHp() > 0 && enemy.getCurrHp() > 0) {
@@ -155,7 +152,7 @@ public class Levels extends AppCompatActivity implements
                         }
 
                         else if (part == 5){
-                            chatTV.setText(player.getName()+" has "+ functions.getPlayer().getCurrHp());
+                            chatTV.setText("You have "+ functions.getPlayer().getCurrHp() + "hp");
                             part = 6;
                         }
 
@@ -191,7 +188,6 @@ public class Levels extends AppCompatActivity implements
 
                 //player scaling feature
                 functions.postBattle();
-
             }
 
         }

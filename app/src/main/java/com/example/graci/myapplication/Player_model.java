@@ -47,7 +47,6 @@ public class Player_model {
 	public void setDefend(boolean isDefending) {
 		this.isDefending = isDefending;
 	}
-
 	public Player_model(String name, int hp, int currHp, int strength, int defense) {
 		this.name = name;
 		this.hp = hp;
