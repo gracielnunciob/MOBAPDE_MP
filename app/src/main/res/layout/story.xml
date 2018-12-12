@@ -1,48 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/chalkboard">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="362dp"
-        android:layout_height="465dp"
-        android:layout_marginBottom="475dp"
-        android:layout_marginEnd="285dp"
-        android:layout_marginLeft="41dp"
-        android:layout_marginRight="285dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="73dp"
-        android:text="@string/story"
-        android:textColor="?attr/colorBackgroundFloating"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.112" />
-
     <Button
         android:id="@+id/nextBtn"
         android:layout_width="334dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="27dp"
         android:layout_marginLeft="23dp"
         android:layout_marginRight="27dp"
         android:layout_marginStart="23dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="486dp"
         android:background="@drawable/startbtn_background"
         android:text="@string/continueBtn"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="392dp"
+        android:layout_height="470dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/nextBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="80dp"
+                android:gravity="center"
+                android:text="YOU! I want to give u a task. A task to fight our school principal! Why you ask? I want him to know how much we are in a pain right now as students. It's so tiring. So much exams, so much homework. I need your help to fight him and complain about how we are as students. Now go and fight!"
+                android:textColor="?attr/colorBackgroundFloating"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

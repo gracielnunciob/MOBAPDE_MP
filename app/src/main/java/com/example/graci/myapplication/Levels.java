@@ -18,7 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class Levels extends AppCompatActivity {
+public class Levels extends AppCompatActivity implements
+        GestureDetector.OnGestureListener,
+        GestureDetector.OnDoubleTapListener {
 
     //stats to scale for enemy
     int baseHp = 60;
@@ -30,7 +32,11 @@ public class Levels extends AppCompatActivity {
     private int part;
     private int imageSet[];
     int actionReg = 0;
-    private GestureDetector gestureDetector;
+    private GestureDetectorCompat gestureDetector;
+
+    public Levels(){
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +51,21 @@ public class Levels extends AppCompatActivity {
         nextBtn = findViewById(R.id.nextBtn);
         imageSet = new int[]{R.drawable.student, R.drawable.scpres, R.drawable.janitor,
                 R.drawable.teacher, R.drawable.principal};
+        gestureDetector = new GestureDetectorCompat(this,this);
+        gestureDetector.setOnDoubleTapListener(this);
+
 
         //initializing player
         final Player_model player = new Player_model("Bart", 100, 100, 10, 10);
-        player.setCurrHp(50);
+      //  player.setCurrHp(50);
 
         //loops till you fight 5 enemies or lose 1 fight
         for (int matchCount = 0; matchCount < 5; matchCount++) {
 
             part = 1;
-            final String enemyAppear;
-            final String enemyStatus;
-            final String whatdo;
+            String enemyAppear;
+            String enemyStatus;
+            String whatdo;
             final String phrase;
 
             //new enemy
@@ -64,35 +73,38 @@ public class Levels extends AppCompatActivity {
 
             //Think(enemy,Difficulty)
             final Think brain = new Think(enemy, matchCount + 1);
+
             //make new battle (includes counters and such)
             final Battle functions = new Battle(player, enemy);
 
             //picture of enemy
             enemyIV.setImageResource(imageSet[matchCount]);
 
-            //Part 1 --> enemy appear
-            enemyStatus = "Enemy HP " + enemy.getHp() + "| Enemy Strength " + enemy.getStrength() + "| Enemy Defense " + enemy.getDefense();
-            enemyAppear = "Enemy " + getResourceFromString(this, "enemy_" + (matchCount + 1)) + " Has Appeared!\n" + enemyStatus;
-            gestureDetector = new GestureDetector(this, new Levels.GestureListener());
 
-            //Part 2 --> string na what to do
-            whatdo = getResourceFromString(this, "whatdo");
-
-            //puts the phrase of the character
+            //phrase of the character
             phrase = getResourceFromString(this, "enemyPhrase_" + (matchCount + 1));
             chatTV.setText(phrase);
 
             while (player.getCurrHp() > 0 && enemy.getCurrHp() > 0) {
 
+                //enemy Strings
+                enemyStatus = "Enemy HP: " + enemy.getHp() + "\nEnemy Strength: " + enemy.getStrength() + "\nEnemy Defense: " + enemy.getDefense();
+                enemyAppear = "Enemy " + getResourceFromString(this, "enemy_" + (matchCount + 1)) + " Has Appeared!\n" + enemyStatus;
+
+                whatdo = getResourceFromString(this, "whatdo");
+
+                final String finalEnemyAppear = enemyAppear;
+                final String finalWhatdo = whatdo;
+
                 nextBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (part == 1) {
-                            chatTV.setText(enemyAppear);
+                            chatTV.setText(finalEnemyAppear);
                             part = 2;
 
                         } else if (part == 2)
-                            chatTV.setText(whatdo);
+                            chatTV.setText(finalWhatdo);
 
                         //part 3 what they do
                         else if (part == 3) {
@@ -143,17 +155,17 @@ public class Levels extends AppCompatActivity {
                         }
 
                         else if (part == 5){
-                            chatTV.setText(player.getName()+" has "+player.getCurrHp());
-                            part = 2;
+                            chatTV.setText(player.getName()+" has "+ functions.getPlayer().getCurrHp());
+                            part = 6;
                         }
 
                         else if (part == 6){
                             //prints
                             String currStatus = "Max HP: "+player.getHp() + "\n" + "Current HP: "+
-                                    player.getCurrHp() + "\n" + "Strength: "+player.getStrength() + "\n" +
+                                    functions.getPlayer().getCurrHp() + "\n" + "Strength: "+ player.getStrength() + "\n" +
                                     "Defense: "+player.getDefense() + "\n";
                             chatTV.setText(currStatus);
-                            part = 2;
+                            part = 1;
                         }
 
                     }
@@ -180,12 +192,7 @@ public class Levels extends AppCompatActivity {
                 //player scaling feature
                 functions.postBattle();
 
-
-
-
             }
-
-
 
         }
     }
@@ -196,48 +203,91 @@ public class Levels extends AppCompatActivity {
         return activity.getString(resId);
     }
 
-    class GestureListener extends GestureDetector.SimpleOnGestureListener {
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
 
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
 
-            if (e2.getY() > e1.getY()){
-                if (part == 2){
-                        actionReg = 1;
-                        chatTV.setText("Action Registered");
-                        part = 3;
-                }
-                // swipe up
-            }
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        return false;
+    }
 
-            else if (e2.getX() > e1.getX()){
-                //swipe right
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+        return false;
+    }
 
-                if (part == 2){
-                    actionReg = 2;
-                    chatTV.setText("Action Registered");
-                    part = 3;
-                }
-
-            }
-
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+        if (part == 2){
+            actionReg = 3;
+            chatTV.setText("Action Registered");
+            part = 3;
             return true;
-
         }
 
-        @Override
-        public boolean onDoubleTap(MotionEvent event) {
+        else
+            return false;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+        if (e2.getY() > e1.getY()){
             if (part == 2){
-                actionReg = 3;
+                actionReg = 1;
+                chatTV.setText("Action Registered");
+                part = 3;
+            }
+            // swipe up
+
+            return true;
+        }
+
+        else if (e2.getX() > e1.getX()){
+            //swipe right
+
+            if (part == 2){
+                actionReg = 2;
                 chatTV.setText("Action Registered");
                 part = 3;
             }
             return true;
         }
 
-
+        else
+            return false;
 
     }
+
 
 
 
