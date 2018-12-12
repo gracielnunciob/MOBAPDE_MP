@@ -14,8 +14,6 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 public class MainActivity extends AppCompatActivity {
     
     private Button startBtn;
- //   private GestureDetector gestureDetector;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +32,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
- //       gestureDetector = new GestureDetector(this, new GestureListener());
+
         
     }
-
-//    public boolean onTouch(View v, MotionEvent event) {
-//        return gestureDetector.onTouchEvent(event);
-//    }
-//
-//    class GestureListener extends GestureDetector.SimpleOnGestureListener {
-//
-//        @Override
-//        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-//
-//            if (e2.getX() < e1.getX()){
-//                // swipe left
-//                Intent intent = new Intent(getApplicationContext(), Story.class);
-//                startActivity(intent);
-//            }
-//
-//            else if (e2.getX() > e1.getX()){
-//                //swipe right
-//                Intent intent = new Intent(getApplicationContext(), Story.class);
-//                startActivity(intent);
-//            }
-//
-//            return true;
-//
-//        }
-//    }
-
 
 }

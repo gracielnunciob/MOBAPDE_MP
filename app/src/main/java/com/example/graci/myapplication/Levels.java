@@ -35,6 +35,8 @@ public class Levels extends AppCompatActivity implements
     private GestureDetectorCompat gestureDetector;
     Player_model player;
     Player_model enemy;
+    int count ;
+    Integer matchCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +52,24 @@ public class Levels extends AppCompatActivity implements
         imageSet = new int[]{R.drawable.student, R.drawable.scpres, R.drawable.janitor,
                 R.drawable.teacher, R.drawable.principal};
         gestureDetector.setOnDoubleTapListener(this);
+        count = 0;
 
+
+        if (matchCount != null) {
+            matchCount = getIntent().getIntExtra("NEXT", matchCount + 1);
+            Log.e("DEBUGING", String.valueOf(matchCount));
+        }
+
+        else if (matchCount == null){
+            matchCount = 0;
+        }
 
         //initializing player
         player = new Player_model("You", 100, 100, 10, 10);
 
 
         //loops till you fight 5 enemies or lose 1 fight
-        for (int matchCount = 0; matchCount < 5; matchCount++) {
+  //      for (int matchCount = 0; matchCount < 5; matchCount++) {
 
             //new enemy
             enemy = new Player_model("Enemy" + (matchCount + 1), baseHp, baseHp, baseStrength, baseDefense);
@@ -96,9 +108,16 @@ public class Levels extends AppCompatActivity implements
                 nextBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         if (part == 1) {
                             chatTV.setText(finalEnemyAppear);
                             part = 2;
+                            if(count==3){
+                               Intent intent = new Intent(getApplicationContext(), Levels.class);
+                               intent.putExtra("NEXT", matchCount+1);
+                                startActivity(intent);
+                            }
+
 
                         } else if (part == 2)
                             chatTV.setText(finalWhatdo);
@@ -163,10 +182,14 @@ public class Levels extends AppCompatActivity implements
                                     "Defense: "+player.getDefense() + "\n";
                             chatTV.setText(currStatus);
                             part = 1;
+                            count++;
                         }
 
                     }
                 });
+
+                if (count == 3)
+                    break;
 
                 //escapes if enemy is dead
                 if(enemy.getCurrHp()<=0)
@@ -194,7 +217,7 @@ public class Levels extends AppCompatActivity implements
 
 
 
-        }
+      //  }
     }
 
     private String getResourceFromString(Levels activity, String id){
@@ -264,7 +287,7 @@ public class Levels extends AppCompatActivity implements
         if (e2.getY() > e1.getY()){
             if (part == 2){
                 actionReg = 1;
-                chatTV.setText("ATTACK!");
+                chatTV.setText("DEFEND!");
                 part = 3;
             }
             // swipe up
@@ -277,7 +300,7 @@ public class Levels extends AppCompatActivity implements
 
             if (part == 2){
                 actionReg = 2;
-                chatTV.setText("DEFEND!");
+                chatTV.setText("ATTACK!");
                 part = 3;
             }
             return true;
